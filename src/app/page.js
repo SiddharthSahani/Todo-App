@@ -16,8 +16,16 @@ export default function Page() {
     setTasks(response.documents)
   }
 
+  const [isMounted, setIsMounted] = useState(false)
+
   useEffect(() => {
-    init()
+    if (isMounted) {
+      init()
+    }
+  }, [isMounted])
+
+  useEffect(() => {
+    setIsMounted(true)
   }, [])
 
   const addTaskHandler = async (task) => {
