@@ -26,9 +26,12 @@ export default function Page() {
   }
 
   const deleteTaskHandler = async (index) => {
-    await deleteTask(tasks[index].$id)
+    const taskId = tasks[index].$id
     tasks.splice(index, 1)
     setTasks([...tasks])
+    if (taskId !== undefined) {
+      await deleteTask(taskId)
+    }
   }
 
   return (
